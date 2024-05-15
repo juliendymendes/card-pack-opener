@@ -56,6 +56,8 @@ export class BoosterCardsComponent {
     this.loadingBooster = true
 		this.apiService.getBooster(this.setCode).subscribe({
 			next: (response) => {
+        console.log(response);
+
 				this.cards = this.cards.concat(response.cards);
 				this.filterCreatureCards();
         this.loadingBooster = false
