@@ -1,20 +1,6 @@
 <section class="relative">
   <h1 class="text-center mb-5 text-xl font-semibold text-white">Explore coleções por nome ou bloco</h1>
-  <form  (ngSubmit)="search()" class="flex flex-wrap gap-5 justify-center">
-    <input id="name" name="name" [(ngModel)]="name" type="text" placeholder="Nome"
-      class="p-2 w-96 border-[1px] rounded-lg border-blue-950">
-      <div class="relative">
-        <select id="block" name="block" [(ngModel)]="block" #bloco="ngModel" required
-          class="p-2 w-40 border-[1px] rounded-lg border-blue-950" [ngClass]="bloco.invalid && (bloco.dirty || bloco.touched) ? 'border-red-500 text-red-500' : ''">
-          <option value="" selected disabled>Bloco</option>
-          <option *ngFor="let block of blocks" [value]="block.toLowerCase()">{{block}}</option>
-        </select>
-        <div *ngIf="bloco.invalid && (bloco.dirty || bloco.touched)" class="absolute mt-1 ms-1 text-red-500">
-          <div *ngIf="bloco.errors?.['required']">Selecione um bloco.</div>
-        </div>
-      </div>
-    <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-5 rounded-lg">Buscar</button>
-  </form>
+  <app-filters (searchResults)="sets = $event"/>
 
 </section>
 
