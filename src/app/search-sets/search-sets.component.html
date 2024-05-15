@@ -1,0 +1,35 @@
+
+	<section class="relative">
+		<form class="flex flex-wrap gap-5 justify-center">
+			<input id="name" name="name" [(ngModel)]="name" type="text" placeholder="Nome"
+				class="p-2 w-96 border-[1px] rounded-lg border-blue-950">
+			<select id="block" name="block" [(ngModel)]="block" #bloco="ngModel" required
+				class="p-2 w-40 border-[1px] rounded-lg border-blue-950">
+				<option value="" selected disabled>Bloco</option>
+				<option *ngFor="let block of blocks" [value]="block.toLowerCase()">{{block}}</option>
+			</select>
+			<button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white px-5 rounded-lg"
+				(click)="search()">Buscar</button>
+		</form>
+		<div *ngIf="bloco.invalid && (bloco.dirty || bloco.touched)" class="absolute my-3 left-1/2 text-red-600">
+			<div *ngIf="bloco.errors?.['required']">Selecione um bloco.</div>
+		</div>
+	</section>
+
+	<section class="mt-10">
+		<div class="flex flex-wrap mx-10 gap-10 justify-center">
+
+			<div *ngFor="let set of sets"
+				class="shadow-lg hover:shadow-2xl cursor-pointer p-6 w-72 rounded-lg flex flex-col">
+        <a [routerLink]="['/cards', set.code]" >
+          <p class="text-lg font-semibold">{{set.name}}</p>
+          <p>{{set.block}}</p>
+          <div class="bg-blue-400 mt-5 w-fit  self-end text-white font-semibold rounded-lg p-2">
+            {{set.releaseDate | date:"dd/MM/yyyy"}}
+          </div>
+        </a>
+			</div>
+      <p *ngIf="sets.length === 0">Nenhum resultado encontrado.</p>
+		</div>
+	</section>
+
