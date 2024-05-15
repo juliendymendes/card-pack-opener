@@ -1,33 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AlertService } from '../services/alert.service';
 
-export default function handleError(
-	error: HttpErrorResponse,
-	alertService: AlertService,
-) {
+export default function handleError(error: HttpErrorResponse) {
 	switch (error.status) {
 		case 500:
-			alertService.showAlert(
-				'Houve um erro de conexão com o servidor. Recarregue a página e tente novamente.',
-				'error',
-			);
-			break;
+			return 'Houve um erro de conexão com o servidor. Recarregue a página e tente novamente.';
 		case 400:
-			alertService.showAlert(
-				'Não foi possível recuperar os dados. Tente novamente mais tarde.',
-				'error',
-			);
-			break;
+			return 'Não foi possível recuperar os dados. Tente novamente mais tarde.';
 		case 404:
-			alertService.showAlert(
-				'O recurso solicitado não foi encontrado.',
-				'error',
-			);
-			break;
+			return 'O recurso solicitado não foi encontrado.';
 		default:
-			alertService.showAlert(
-				'Não foi possível recuperar os dados. Tente novamente mais tarde.',
-				'error',
-			);
+			return 'Não foi possível recuperar os dados. Tente novamente mais tarde.';
 	}
 }

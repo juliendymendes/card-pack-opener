@@ -33,10 +33,10 @@ export class FiltersComponent {
 					this.searchResults.emit(sets.sets);
 				},
 				error: (error: HttpErrorResponse) => {
-					handleError(error, this.alertService);
+					const message = handleError(error);
+					this.alertService.showAlert(message, 'error');
 				},
 			});
 		}
 	}
-
 }

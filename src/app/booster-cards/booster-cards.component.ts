@@ -21,7 +21,7 @@ export class BoosterCardsComponent {
 	private count = 0;
 	setCode = '';
 	private apiService = inject(ApiService);
-  alertService = inject(AlertService)
+	alertService = inject(AlertService);
 
 	constructor(private route: ActivatedRoute) {}
 
@@ -30,19 +30,20 @@ export class BoosterCardsComponent {
 		this.loadBooster();
 	}
 	loadBooster() {
-    this.loadingBooster = true
+		this.loadingBooster = true;
 		this.apiService.getBooster(this.setCode).subscribe({
 			next: (response) => {
-        console.log(response);
+				console.log(response);
 
 				this.cards = this.cards.concat(response.cards);
 				this.filterCreatureCards();
-        this.loadingBooster = false
+				this.loadingBooster = false;
 			},
 			error: (error: HttpErrorResponse) => {
-        handleError(error, this.alertService)
-        this.loadingBooster = false
-      },
+				const message = handleError(error);
+				this.alertService.showAlert(message, 'error');
+				this.loadingBooster = false;
+			},
 		});
 	}
 
@@ -65,5 +66,4 @@ export class BoosterCardsComponent {
 			this.loadingBooster = false;
 		}
 	}
-
 }
