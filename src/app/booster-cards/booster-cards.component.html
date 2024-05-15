@@ -1,11 +1,11 @@
-<section>
+<section class="text-white">
   <div class="mb-10">
     <a routerLink="/" class="hover:underline cursor-pointer">Voltar para busca</a>
 
     <h1 class="text-center text-2xl font-semibold">Suas cartas do pacote aberto</h1>
   </div>
   <div class="flex flex-wrap mx-10 gap-10 justify-center">
-    <div *ngFor="let card of filteredCards" class="shadow-lg hover:shadow-2xl p-6 w-fit gap-7 rounded-lg flex relative">
+    <div *ngFor="let card of filteredCards" class="shadow-lg shadow-slate-600 hover:scale-110 p-6 w-fit gap-7 rounded-lg flex relative">
       <div class="absolute top-1 right-4 font-semibold flex gap-3" >
         <div *ngFor="let color of card.colorIdentity">
           <p *ngIf="!getColorIdentityImage(color)">{{color}}</p>

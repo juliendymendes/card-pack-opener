@@ -1,5 +1,5 @@
 <section class="relative">
-  <h1 class="text-center mb-5 text-xl font-semibold">Explore coleções por nome ou bloco</h1>
+  <h1 class="text-center mb-5 text-xl font-semibold text-white">Explore coleções por nome ou bloco</h1>
   <form  (ngSubmit)="search()" class="flex flex-wrap gap-5 justify-center">
     <input id="name" name="name" [(ngModel)]="name" type="text" placeholder="Nome"
       class="p-2 w-96 border-[1px] rounded-lg border-blue-950">
@@ -21,15 +21,15 @@
 <section class="mt-10">
   <div class="flex flex-wrap mx-10 gap-10 justify-center">
 
-    <div *ngFor="let set of sets" class="shadow-lg hover:shadow-2xl cursor-pointer w-72 rounded-lg ">
+    <div *ngFor="let set of sets" class="bg-zinc-300 shadow-lg shadow-slate-600 hover:scale-110 transition ease-in-out delay-0 cursor-pointer w-72 rounded-lg ">
       <a [routerLink]="['/cards', set.code]" class="flex flex-col p-6 h-full">
-        <p class="text-lg font-semibold">{{set.name}}</p>
-        <p>{{set.block}}</p>
-        <div class="bg-blue-400 mt-5 w-fit  self-end text-white font-semibold rounded-lg p-2">
+        <p class="text-black text-lg font-semibold">{{set.name}}</p>
+        <p class="text-black">{{set.block}}</p>
+        <div class="bg-orange-700 mt-5 w-fit  self-end text-white font-semibold rounded-lg p-2">
           {{set.releaseDate | date:"dd/MM/yyyy"}}
         </div>
       </a>
     </div>
-    <p *ngIf="sets.length === 0">Nenhum resultado encontrado.</p>
+    <p *ngIf="sets.length === 0" class="text-white">Nenhum resultado encontrado.</p>
   </div>
 </section>
