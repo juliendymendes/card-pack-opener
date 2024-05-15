@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { ApiService } from './shared/services/api.service';
 import { ISet } from './shared/types/Set';
+import { AlertComponent } from './shared/components/alert/alert.component';
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [RouterOutlet],
+	imports: [RouterOutlet, AlertComponent],
 	templateUrl: './app.component.html',
 })
 export class AppComponent {
