@@ -1,20 +1,21 @@
 <section>
-  <h1 class="text-center text-2xl font-semibold">Suas cartas do pacote aberto</h1>
+  <h1 class="text-center mb-10 text-2xl font-semibold">Suas cartas do pacote aberto</h1>
+  <div class="flex flex-wrap mx-10 gap-10 justify-center">
 
-  <div class="flex">
-    <div class="w-[500px] shadow-xl border-[.5px] rounded-lg p-5 border-blue-900 flex gap-7 relative">
+    <div *ngFor="let card of filteredCards" class="shadow-lg hover:shadow-2xl p-6 w-fit gap-7 rounded-lg flex relative">
       <div class="absolute top-1 right-4 font-semibold">
-        G
+        {{card.colorIdentity}}
       </div>
-      <div class="w-[800px] h-full">
-        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409741&type=card" alt="Imagem" >
+      <div>
+        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409741&type=card" alt="Imagem"
+          class="w-40">
       </div>
       <div class="flex flex-col gap-3">
-        <p class="text-xl">Terra Stomper</p>
-        <p>&#123;3&#125;&#123;G&#125;&#123;G&#125;&#123;G&#125;</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, voluptas harum modi velit fugit nemo sunt? Porro ipsa dolor dolores accusantium ex, fugiat fugit qui enim repellat, maxime ab. Eveniet?</p>
+        <p class="text-xl">{{card.name}}</p>
+        <p>{{card.manaCost}}</p>
+        <p class="w-72">{{ card.text}}</p>
       </div>
     </div>
-
   </div>
+  <loading *ngIf="loadingBooster"/>
 </section>
