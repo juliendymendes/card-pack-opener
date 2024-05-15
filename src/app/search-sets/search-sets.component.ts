@@ -5,21 +5,14 @@ import { ISet } from '../shared/types/Set';
 import { ApiService } from '../shared/services/api.service';
 import { RouterLink } from '@angular/router';
 import { FiltersComponent } from './components/filters/filters.component';
+import { SetsSearchResultsComponent } from './components/sets-search-results/sets-search-results.component';
 
 @Component({
 	selector: 'search-sets',
 	standalone: true,
-	imports: [FormsModule, NgIf, NgFor, DatePipe, RouterLink, NgClass, FiltersComponent],
+	imports: [FiltersComponent, SetsSearchResultsComponent],
 	templateUrl: './search-sets.component.html',
 })
 export class SearchSetsComponent {
-
 	sets: ISet[] = [];
-	private apiService = inject(ApiService);
-
-	openBooster(setCode: string) {
-		this.apiService.getBooster(setCode).subscribe((cards) => {
-			console.log(cards);
-		});
-	}
 }
