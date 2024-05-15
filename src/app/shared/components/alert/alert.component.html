@@ -1,0 +1,4 @@
+<div *ngIf="alertService.feedbackOptions.visible" [ngClass]="alertService.feedbackOptions.type == 'error' ? 'bg-red-500' : 'bg-yellow-500'" class="p-3 absolute w-72 text-white font-medium rounded-lg right-4 flex items-start">
+  {{alertService.feedbackOptions.message}}
+  <button (click)="alertService.hideAlert()"><img src="/assets/icons/close.svg" width="42"/></button>
+</div>
