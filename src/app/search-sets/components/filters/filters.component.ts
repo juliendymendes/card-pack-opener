@@ -18,6 +18,7 @@ export class FiltersComponent {
 	block = '';
 	blocks = ['Amonkhet', 'Ixalan', 'Zendikar', 'Ravnica', 'Onslaught'];
 	@Output() searchResults = new EventEmitter();
+  loading = false
 	private alertService = inject(AlertService);
 	private apiService = inject(ApiService);
 
@@ -28,13 +29,16 @@ export class FiltersComponent {
 		}
 
 		if (this.block != '') {
+      this.loading = true
 			this.apiService.getSets(this.name, this.block).subscribe({
 				next: (sets) => {
 					this.searchResults.emit(sets.sets);
+          this.loading = false
 				},
 				error: (error: HttpErrorResponse) => {
 					const message = handleError(error);
 					this.alertService.showAlert(message, 'error');
+          this.loading = false
 				},
 			});
 		}
