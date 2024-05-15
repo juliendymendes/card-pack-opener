@@ -1,27 +1,65 @@
-# DesafioLinked
+# Automatic Magic: The Gathering card pack opener
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+This project consists of creating an automated flow for opening Magic: The Gathering card packs from a specific collection.
 
-## Development server
+![](screenshot.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Table of contents
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Automatic Magic: The Gathering card pack opener](#automatic-magic-the-gathering-card-pack-opener)
+  - [Table of contents](#table-of-contents)
+  - [Features](#features)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Starting the Development Server](#starting-the-development-server)
+    - [Building for Production](#building-for-production)
+  - [License](#license)
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Filter collections by name and block.
+- Open card packs from a specific collection.
 
-## Running unit tests
+## Requirements
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Node.js](https://nodejs.org/en/) >= 20.10.0
+- [npm](https://pnpm.js.org/) >= 10.4.0
 
-## Running end-to-end tests
+## Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Set up the project using npm. Use the command
+`npm install`
 
-## Further help
+After completing the installation, the environment is ready for development.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Usage
+
+This section covers how to start the development server and build the project for production.
+
+### Starting the Development Server
+
+To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:4200](http://localhost:4200):
+
+```bash
+ng serve
+```
+
+Note that in the '/' route there will be nothing shown on the screen, it is necessary to include an offer code in the url.
+Use code "1" to view the offer page and form. Example: `http://localhost/1`
+
+### Building for Production
+
+To build the project for production, use:
+
+```bash
+ng build
+```
+
+Once the build process is completed, the application will be ready for deployment in a production environment. The build artifacts will be stored in the `dist/` directory.
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
