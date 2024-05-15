@@ -1,14 +1,21 @@
 <section>
-  <h1 class="text-center mb-10 text-2xl font-semibold">Suas cartas do pacote aberto</h1>
-  <div class="flex flex-wrap mx-10 gap-10 justify-center">
+  <div class="mb-10">
+    <a routerLink="/" class="hover:underline cursor-pointer">Voltar para busca</a>
 
+    <h1 class="text-center text-2xl font-semibold">Suas cartas do pacote aberto</h1>
+  </div>
+  <div class="flex flex-wrap mx-10 gap-10 justify-center">
     <div *ngFor="let card of filteredCards" class="shadow-lg hover:shadow-2xl p-6 w-fit gap-7 rounded-lg flex relative">
-      <div class="absolute top-1 right-4 font-semibold">
-        {{card.colorIdentity}}
+      <div class="absolute top-1 right-4 font-semibold flex gap-3" >
+        <div *ngFor="let color of card.colorIdentity">
+          <p *ngIf="!getColorIdentityImage(color)">{{color}}</p>
+          <img [ngSrc]="getColorIdentityImage(color) || ''" width="32" height="32" *ngIf="getColorIdentityImage(color)" priority>
+
+        </div>
       </div>
       <div>
-        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=409741&type=card" alt="Imagem"
-          class="w-40">
+        <img [ngSrc]="card.imageUrl || ''" [alt]="card.name" width="223" height="310" priority
+          >
       </div>
       <div class="flex flex-col gap-3">
         <p class="text-xl">{{card.name}}</p>
