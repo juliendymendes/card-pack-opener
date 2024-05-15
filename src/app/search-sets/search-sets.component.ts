@@ -5,12 +5,13 @@ import { ISet } from '../shared/types/Set';
 import { ApiService } from '../shared/services/api.service';
 import { RouterLink } from '@angular/router';
 import { FiltersComponent } from './components/filters/filters.component';
-import { SetsSearchResultsComponent } from './components/sets-search-results/sets-search-results.component';
+import { SearchResultCardComponent } from './components/search-result-card/search-result-card.component';
+
 
 @Component({
 	selector: 'search-sets',
 	standalone: true,
-	imports: [FiltersComponent, SetsSearchResultsComponent],
+	imports: [FiltersComponent, SearchResultCardComponent, NgFor,NgIf, RouterLink, DatePipe],
 	templateUrl: './search-sets.component.html',
 })
 export class SearchSetsComponent {

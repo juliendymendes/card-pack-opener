@@ -1,9 +1,13 @@
 <section class="relative">
   <h1 class="text-center mb-5 text-xl font-semibold text-white">Explore coleções por nome ou bloco</h1>
-  <app-filters (searchResults)="sets = $event"/>
+  <app-filters (searchResults)="sets = $event" />
 
 </section>
 
 <section class="mt-10">
-  <app-sets-search-results [sets]="sets" />
+  <div class="flex flex-wrap mx-10 gap-10 justify-center">
+    <app-search-result-card *ngFor="let set of sets" [set]="set" />
+    <p *ngIf="sets.length === 0" class="text-white">Nenhum resultado encontrado.</p>
+  </div>
+
 </section>
