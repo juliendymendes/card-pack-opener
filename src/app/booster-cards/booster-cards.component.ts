@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../shared/services/api.service';
-import { switchMap } from 'rxjs';
+import { switchMap, throwError } from 'rxjs';
 import { ICard } from '../shared/types/Booster';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
@@ -63,17 +63,40 @@ export class BoosterCardsComponent {
         this.loadingBooster = false
 			},
 			error: (error: HttpErrorResponse) => {
-        if(error.status === 500){
-          this.alertService.showAlert("Houve um erro de conexão com o servidor. Por favor, tente novamente.", "error")
-        }
-        if(error.status === 400){
-          this.alertService.showAlert("Não foi possível recuperar os cards. Tente novamente mais tarde.", "error")
-        }
+        this.handleError(error)
         this.loadingBooster = false
       },
 		});
 	}
 
+  handleError(error: HttpErrorResponse){
+    switch (error.status) {
+      case 500:
+       this.alertService.showAlert(
+          'Houve um erro de conexão com o servidor. Recarregue a página e tente novamente.',
+          'error',
+        );
+        break;
+      case 400:
+        this.alertService.showAlert(
+          'Não foi possível recuperar os dados. Tente novamente mais tarde.',
+          'error',
+        );
+        break;
+      case 404:
+          this.alertService.showAlert(
+            'O recurso solicitado não foi encontrado.',
+            'error',
+          );
+          break;
+      default:
+        this.alertService.showAlert(
+          'Não foi possível recuperar os dados. Tente novamente mais tarde.',
+          'error',
+        );
+    }
+    return throwError(() => new Error('Não foi possível recuperar os dados. Tente novamente mais tarde.'));
+  }
 	filterCreatureCards() {
 		this.filteredCards = this.filteredCards.concat(
 			this.cards.filter((card) => {

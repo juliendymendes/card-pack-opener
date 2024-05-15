@@ -6,6 +6,7 @@ import { ApiService } from '../shared/services/api.service';
 import { RouterLink } from '@angular/router';
 import { AlertService } from '../shared/services/alert.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
 
 @Component({
 	selector: 'search-sets',
@@ -34,35 +35,40 @@ export class SearchSetsComponent {
 					this.sets = sets.sets;
 				},
 				error: (error: HttpErrorResponse) => {
-					switch (error.status) {
-						case 500:
-							this.alertService.showAlert(
-								'Houve um erro de conexão com o servidor. Por favor, tente novamente.',
-								'error',
-							);
-							break;
-						case 400:
-							this.alertService.showAlert(
-								'Não foi possível recuperar os dados. Tente novamente mais tarde.',
-								'error',
-							);
-							break;
-            case 404:
-                this.alertService.showAlert(
-                  'O recurso solicitado não foi encontrado.',
-                  'error',
-                );
-                break;
-            default:
-              this.alertService.showAlert(
-								'Não foi possível recuperar os dados. Tente novamente mais tarde.',
-								'error',
-							);
-					}
+          this.handleError(error)
 				},
 			});
 		}
 	}
+
+  handleError(error: HttpErrorResponse){
+    switch (error.status) {
+      case 500:
+       this.alertService.showAlert(
+          'Houve um erro de conexão com o servidor. Recarregue a página e tente novamente.',
+          'error',
+        );
+        break;
+      case 400:
+        this.alertService.showAlert(
+          'Não foi possível recuperar os dados. Tente novamente mais tarde.',
+          'error',
+        );
+        break;
+      case 404:
+          this.alertService.showAlert(
+            'O recurso solicitado não foi encontrado.',
+            'error',
+          );
+          break;
+      default:
+        this.alertService.showAlert(
+          'Não foi possível recuperar os dados. Tente novamente mais tarde.',
+          'error',
+        );
+    }
+    return throwError(() => new Error('Não foi possível recuperar os dados. Tente novamente mais tarde.'));
+  }
 	openBooster(setCode: string) {
 		this.apiService.getBooster(setCode).subscribe((cards) => {
 			console.log(cards);
