@@ -1,0 +1,18 @@
+<div class="bg-gray-900 hover:scale-110 p-6 w-fit gap-7 rounded-lg flex relative">
+  <div class="absolute top-2 right-4 font-semibold flex gap-3" >
+    <div *ngFor="let color of card.colorIdentity">
+      <p *ngIf="!getColorIdentityImage(color)">{{color}}</p>
+      <img [ngSrc]="getColorIdentityImage(color) || ''" width="32" height="32" *ngIf="getColorIdentityImage(color)" priority>
+
+    </div>
+  </div>
+  <div>
+    <img [ngSrc]="card.imageUrl || ''" [alt]="card.name" width="150" height="310" priority class="bg-transparent"
+      >
+  </div>
+  <div class="flex flex-col gap-3">
+    <p class="text-xl">{{card.name}}</p>
+    <p>{{card.manaCost}}</p>
+    <p class="w-72 text-sm">{{card.text}}</p>
+  </div>
+</div>
