@@ -1,8 +1,6 @@
-import { NgIf, NgFor, DatePipe, NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { ISet } from '../shared/types/Set';
-import { ApiService } from '../shared/services/api.service';
 import { RouterLink } from '@angular/router';
 import { FiltersComponent } from './components/filters/filters.component';
 import { SearchResultCardComponent } from './components/search-result-card/search-result-card.component';

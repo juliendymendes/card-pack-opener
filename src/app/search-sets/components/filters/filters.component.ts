@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
 import { AlertService } from '../../../shared/services/alert.service';
 import { ApiService } from '../../../shared/services/api.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
 import handleError from '../../../shared/functions/handleError';
 @Component({
 	selector: 'app-filters',

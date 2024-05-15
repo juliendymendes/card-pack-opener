@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../shared/services/api.service';
-import { throwError } from 'rxjs';
 import { ICard } from '../shared/types/Booster';
 import { NgFor, NgIf } from '@angular/common';
 import { LoadingComponent } from '../shared/components/loading/loading.component';

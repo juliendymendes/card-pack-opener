@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ISet } from '../../../shared/types/Set';
 import { RouterLink } from '@angular/router';
-import { DatePipe, NgIf, NgFor } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-result-card',
