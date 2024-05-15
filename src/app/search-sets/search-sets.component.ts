@@ -1,6 +1,6 @@
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { NgIf, NgFor, DatePipe, NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ISet } from '../shared/types/Set';
 import { ApiService } from '../shared/services/api.service';
 import { RouterLink } from '@angular/router';
@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
 	selector: 'search-sets',
 	standalone: true,
-	imports: [FormsModule, NgIf, NgFor, DatePipe, RouterLink],
+	imports: [FormsModule, NgIf, NgFor, DatePipe, RouterLink, NgClass],
 	templateUrl: './search-sets.component.html',
 })
 export class SearchSetsComponent {
@@ -19,9 +19,15 @@ export class SearchSetsComponent {
 	blocks = ['Amonkhet', 'Ixalan', 'Zendikar', 'Ravnica', 'Onslaught'];
 	sets: ISet[] = [];
 	alertService = inject(AlertService);
+  blockError = false
 	private apiService = inject(ApiService);
 
 	search() {
+    if(this.block === ''){
+      this.alertService.showAlert("Selecione um bloco", 'warn')
+      return
+    }
+
 		if (this.block != '') {
 			this.apiService.getSets(this.name, this.block).subscribe({
 				next: (sets) => {

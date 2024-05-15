@@ -40,7 +40,7 @@ export class BoosterCardsComponent {
 	];
 	cards: ICard[] = [];
 	filteredCards: ICard[] = [];
-	loadingBooster = false;
+	loadingBooster = true;
 	private count = 0;
 	setCode = '';
 	private apiService = inject(ApiService);
@@ -53,10 +53,12 @@ export class BoosterCardsComponent {
 		this.loadBooster();
 	}
 	loadBooster() {
+    this.loadingBooster = true
 		this.apiService.getBooster(this.setCode).subscribe({
 			next: (response) => {
 				this.cards = this.cards.concat(response.cards);
 				this.filterCreatureCards();
+        this.loadingBooster = false
 			},
 			error: (error: HttpErrorResponse) => {
         if(error.status === 500){
@@ -65,7 +67,7 @@ export class BoosterCardsComponent {
         if(error.status === 400){
           this.alertService.showAlert("Não foi possível recuperar os cards. Tente novamente mais tarde.", "error")
         }
-
+        this.loadingBooster = false
       },
 		});
 	}
