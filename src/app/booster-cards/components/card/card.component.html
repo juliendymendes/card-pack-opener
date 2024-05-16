@@ -1,5 +1,5 @@
-<div class="bg-gray-900 hover:scale-110 p-6 w-fit gap-7 rounded-lg flex relative">
-  <div class="absolute top-2 right-4 font-semibold flex gap-3" >
+<div class="bg-gray-900 hover:scale-110 p-6 w-fit gap-7 rounded-lg flex flex-wrap relative">
+  <div class="absolute top-3 right-4 font-semibold flex gap-3" >
     <div *ngFor="let color of card.colorIdentity">
       <p *ngIf="!getColorIdentityImage(color)">{{color}}</p>
       <img [ngSrc]="getColorIdentityImage(color) || ''" width="32" height="32" *ngIf="getColorIdentityImage(color)" priority>
